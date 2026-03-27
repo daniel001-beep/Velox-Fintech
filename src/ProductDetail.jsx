@@ -1,5 +1,6 @@
-import { useState, useContext, useEffect } from "react";
+import { useState, useContext } from "react";
 import { useParams, useNavigate, Link } from "react-router-dom";
+
 import Navbar from "./Navbar";
 import Footer from "./Footer";
 import { products } from "./data";
@@ -13,25 +14,6 @@ export default function ProductDetail() {
   const [quantity, setQuantity] = useState(1);
   const [size, setSize] = useState("Select Size");
   const { addToCart, cartCount } = useContext(CartContext);
-
-  // Initialize menu on component mount
-  useEffect(() => {
-    const menu = document.getElementById("MenuItems");
-    if (menu) {
-      menu.style.maxHeight = "0px";
-    }
-  }, []);
-
-  const toggleMenu = () => {
-    const menu = document.getElementById("MenuItems");
-    if (menu) {
-      if (menu.style.maxHeight === "0px" || !menu.style.maxHeight) {
-        menu.style.maxHeight = "200px";
-      } else {
-        menu.style.maxHeight = "0px";
-      }
-    }
-  };
 
   const handleAddToCart = () => {
     if (size === "Select Size") {
@@ -58,47 +40,7 @@ export default function ProductDetail() {
 
   return (
     <>
-      <div className="container">
-        <div className="navbar">
-          <div className="logo">
-            <a href="/">
-              <img src="/images/logo.png" width="125px" alt="Logo" />
-            </a>
-          </div>
-          <nav>
-            <ul id="MenuItems">
-              <li>
-                <Link to="/">Home</Link>
-              </li>
-              <li>
-                <Link to="/products">Products</Link>
-              </li>
-              <li>
-                <Link to="/about">About</Link>
-              </li>
-              <li>
-                <Link to="/contact">Contact</Link>
-              </li>
-            </ul>
-          </nav>
-          <a href="/cart" className="cart-icon">
-            <img src="/images/cart.png" width="30px" height="30px" alt="Cart" />
-            <span className="cart-count">{cartCount}</span>
-          </a>
-          <a href="/account">
-            <i
-              className="fas fa-user-circle"
-              style={{ fontSize: "30px", color: "#3b82f6", marginLeft: "15px" }}
-            ></i>
-          </a>
-          <img
-            src="/images/menu.png"
-            className="menu-icon"
-            onClick={toggleMenu}
-            alt="Menu"
-          />
-        </div>
-      </div>
+      <Navbar />
 
       <div className="small-container single-product">
         <div className="row">
