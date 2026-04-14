@@ -52,7 +52,7 @@
 ​💻 Local Development Setup
 ​Clone the repository: git clone 
 
-https://github.com/your-username/velox.git
+https://github.com/daniel001-beep/Velox.git
 
 ​Install dependencies: npm install
 
