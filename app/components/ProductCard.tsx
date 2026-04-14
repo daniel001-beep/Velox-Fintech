@@ -6,9 +6,10 @@ import Image from "next/image";
 interface Product {
   id: number;
   name: string;
-  price: number;
-  imageUrl: string;
-  category: string;
+  price: number | string;
+  imageUrl?: string;
+  imageurl?: string;
+  category?: string;
 }
 
 export default function ProductCard({ product }: { product: Product }) {
@@ -16,6 +17,7 @@ export default function ProductCard({ product }: { product: Product }) {
   
   const imageUrl = product.imageUrl || (product as any).imageurl;
   const finalImageUrl = imageUrl && typeof imageUrl === 'string' && imageUrl.trim() ? imageUrl : null;
+  const priceNum = typeof product.price === 'string' ? Number(product.price) : product.price;
   
   return (
     <Link href={`/products/${product.id}`} className="product-card-link block">
@@ -51,7 +53,7 @@ export default function ProductCard({ product }: { product: Product }) {
             <i className="fa fa-star-half-stroke"></i>
             <span className="product-card-rating-text">4.5</span>
           </div>
-          <p className="product-card-price">${product.price.toFixed(2)}</p>
+          <p className="product-card-price">${priceNum.toFixed(2)}</p>
         </div>
       </div>
     </Link>

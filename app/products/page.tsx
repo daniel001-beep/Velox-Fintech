@@ -9,8 +9,11 @@ export const dynamic = "force-dynamic";
 export default async function Products() {
   const allProducts = await db.select().from(products);
   
-  // Remove duplicates based on product ID
-  const uniqueProducts = Array.from(new Map(allProducts.map(p => [p.id, p])).values());
+  // Remove duplicates based on product ID and convert price to number
+  const uniqueProducts = Array.from(new Map(allProducts.map(p => [p.id, p])).values()).map(p => ({
+    ...p,
+    price: Number(p.price)
+  }));
 
   return (
     <div className="min-h-screen bg-[#050505]">

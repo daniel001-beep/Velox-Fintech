@@ -71,7 +71,7 @@ export default function Contact() {
               <i className="fas fa-envelope text-2xl text-purple-500 mt-1"></i>
               <div>
                 <h3 className="font-bold text-white text-lg">Email Us</h3>
-                <p>support@redstore.com</p>
+                <p>support@Velox.com</p>
               </div>
             </div>
 
@@ -100,8 +100,8 @@ export default function Contact() {
 
           <form className="bg-white/5 border border-white/10 rounded-2xl p-8 shadow-2xl space-y-6" onSubmit={handleSubmit}>
             <input type="hidden" name="access_key" value="b403125a-6b32-47b4-9028-3954d4ebc00f" />
-            <input type="hidden" name="subject" value="New Message from RedStore Website" />
-            <input type="hidden" name="from_name" value="RedStore Contact Form" />
+            <input type="hidden" name="subject" value="New Message from Velox Website" />
+            <input type="hidden" name="from_name" value="Velox Contact Form" />
             <input type="checkbox" name="botcheck" className="hidden" />
 
             <h2 className="text-2xl font-bold text-white border-b border-white/10 pb-4">Send Us a Message</h2>

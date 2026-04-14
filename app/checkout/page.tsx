@@ -155,7 +155,7 @@ export default function Checkout() {
               </div>
             </div>
 
-            <div className="h-[1px] bg-white/10 mb-6"></div>
+            <div className="h-1px bg-white/10 mb-6"></div>
 
             <div className="flex justify-between items-center text-2xl font-bold text-white mb-8">
               <span>Total</span>

@@ -22,7 +22,8 @@ export default async function ProductPage({ params }: { params: Promise<{ id: st
 
     if (!product) notFound();
 
-  const productReviews = await db.select().from(reviews).where(eq(reviews.productId, productId)).limit(5);
+    const priceNum = typeof product.price === 'string' ? Number(product.price) : product.price;
+    const productReviews = await db.select().from(reviews).where(eq(reviews.productId, productId)).limit(5);
 
   return (
     <div className="min-h-screen bg-[#050505]">
@@ -66,10 +67,10 @@ export default async function ProductPage({ params }: { params: Promise<{ id: st
             {/* Price */}
             <div className="product-detail-price-section">
               <span className="product-detail-price">
-                ${product.price.toFixed(2)}
+                ${priceNum.toFixed(2)}
               </span>
               <span className="product-detail-original-price">
-                ${(product.price * 1.3).toFixed(2)}
+                ${(priceNum * 1.3).toFixed(2)}
               </span>
               <span className="product-detail-discount">
                 Save 23%

@@ -6,8 +6,8 @@ import { Providers } from "./components/Providers";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Redstore - Premium Shopping",
-  description: "Discover premium fashion, tech, and living essentials powered by AI",
+  title: "Velox - Premium E-Commerce Store",
+  description: "Shop our curated collection of premium products. Free shipping and secure checkout.",
 };
 
 export default function RootLayout({
@@ -21,7 +21,7 @@ export default function RootLayout({
         <Providers>
           <div className="min-h-screen flex grow flex-col">
             <Navbar />
-            <main className="grow pt-20">{children}</main>
+            <main className="grow">{children}</main>
             <Footer />
             <AIChatAssistant />
           </div>

@@ -22,6 +22,6 @@ const pool = globalForDb.pool ?? new Pool({
   max: 1,
 });
 
-if (process.env.NODE_ENV !== "production") globalForDb.pool = pool;
+if (process.env.NODE_ENV === "production") globalForDb.pool = pool;
 
 export const db = drizzle(pool, { schema });

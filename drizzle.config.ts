@@ -7,7 +7,6 @@ export default defineConfig({
   out: "./drizzle",
   dialect: "postgresql",
   dbCredentials: {
-    url: process.env.POSTGRES_URL_NON_POOLING || process.env.POSTGRES_URL!,
-    ssl: { rejectUnauthorized: false },
+    url: process.env.POSTGRES_URL_NON_POOLING!,
   },
 });

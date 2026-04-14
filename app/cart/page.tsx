@@ -55,7 +55,8 @@ export default function Cart() {
 
             <div className="space-y-6">
               {cart.map((item: any) => {
-                const itemTotal = item.price * item.quantity;
+                const itemPrice = typeof item.price === 'string' ? Number(item.price) : item.price;
+                const itemTotal = itemPrice * item.quantity;
                 return (
                   <div key={`${item.id}-${item.size}`} className="flex flex-col sm:flex-row items-center gap-6 p-6 bg-black/20 rounded-2xl border border-white/5 relative group">
                     <img 
@@ -68,7 +69,7 @@ export default function Cart() {
                       <h4 className="text-lg font-bold text-white">{item.name}</h4>
                       <div className="flex items-center justify-center sm:justify-start gap-4 text-sm text-gray-400">
                         <span><i className="fas fa-tag"></i> {item.size}</span>
-                        <span><i className="fas fa-dollar-sign"></i> {item.price.toFixed(2)}</span>
+                        <span><i className="fas fa-dollar-sign"></i> {itemPrice.toFixed(2)}</span>
                       </div>
                     </div>
 
