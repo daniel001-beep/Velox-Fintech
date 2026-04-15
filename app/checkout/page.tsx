@@ -1,14 +1,142 @@
 "use client";
 
-import { useContext } from "react";
+import { useContext, useState, useCallback } from "react";
+import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { CartContext } from "@/app/components/Providers";
+import { PaymentErrorBoundary } from "@/app/components/ErrorBoundaries";
+import {
+  processPurchaseTransaction,
+  generateIdempotencyKey,
+  logCheckoutAttempt,
+  logAddressChange,
+  recoverTransaction,
+} from "@/utils/transaction-idempotency";
+import { createClient } from "@/utils/supabase/client";
 
-export default function Checkout() {
+function CheckoutContent() {
+  const router = useRouter();
   const { cartTotal } = useContext(CartContext) || { cartTotal: 0 };
+  const [isProcessing, setIsProcessing] = useState(false);
+  const [formData, setFormData] = useState({
+    email: "",
+    firstName: "",
+    lastName: "",
+    address: "",
+    city: "",
+    zipCode: "",
+    country: "United States",
+    cardNumber: "",
+    expiry: "",
+    cvv: "",
+  });
+  const [error, setError] = useState<string | null>(null);
+  const [success, setSuccess] = useState(false);
+
   const shipping = cartTotal > 100 ? 0 : 10;
   const tax = cartTotal * 0.1;
   const total = cartTotal + shipping + tax;
+  const supabase = createClient();
+
+  const handleInputChange = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+      const { name, value } = e.target;
+      setFormData((prev) => ({ ...prev, [name]: value }));
+    },
+    []
+  );
+
+  const handleAddressChange = useCallback(
+    async (oldAddress: typeof formData, newAddress: typeof formData) => {
+      const { data: user } = await supabase.auth.getUser();
+      const addressId = `addr_${Date.now()}`;
+
+      await logAddressChange(user?.user?.id || "", addressId, oldAddress, newAddress);
+    },
+    [supabase]
+  );
+
+  const handleCheckout = useCallback(
+    async (e: React.FormEvent) => {
+      e.preventDefault();
+      setError(null);
+      setIsProcessing(true);
+
+      try {
+        const {
+          data: { user },
+        } = await supabase.auth.getUser();
+
+        if (!user) {
+          setError("Please sign in to continue");
+          router.push("/auth/signin");
+          return;
+        }
+
+        // Log checkout attempt
+        await logCheckoutAttempt(user.id, 0, {
+          email: formData.email,
+          city: formData.city,
+          country: formData.country,
+        });
+
+        // Generate unique idempotency key
+        const idempotencyKey = generateIdempotencyKey(user.id, Date.now());
+
+        // Attempt to recover any previous transaction
+        const recovered = await recoverTransaction(Date.now());
+        if (recovered && recovered.status === "completed") {
+          setSuccess(true);
+          setTimeout(() => router.push("/orders"), 2000);
+          return;
+        }
+
+        // Process the transaction with idempotency
+        const transactionResponse = await processPurchaseTransaction({
+          userId: user.id,
+          orderId: Date.now(),
+          amount: total,
+          metadata: {
+            email: formData.email,
+            address: formData.address,
+            city: formData.city,
+            country: formData.country,
+          },
+        });
+
+        if (transactionResponse.status === "completed") {
+          setSuccess(true);
+          setTimeout(() => router.push("/orders"), 2000);
+        } else if (transactionResponse.status === "failed") {
+          setError(
+            transactionResponse.errorMessage ||
+              "Transaction failed. Please try again."
+          );
+        }
+      } catch (err) {
+        setError(`Checkout error: ${String(err)}`);
+      } finally {
+        setIsProcessing(false);
+      }
+    },
+    [formData, total, router, supabase]
+  );
+
+  if (success) {
+    return (
+      <div className="flex items-center justify-center py-20">
+        <div className="text-center">
+          <div className="w-20 h-20 bg-green-500/20 rounded-full flex items-center justify-center mx-auto mb-4">
+            <i className="fas fa-check text-4xl text-green-400"></i>
+          </div>
+          <h2 className="text-3xl font-bold text-white mb-2">
+            Payment Successful!
+          </h2>
+          <p className="text-gray-400">Redirecting to orders...</p>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="container py-12 md:py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 min-h-screen">
