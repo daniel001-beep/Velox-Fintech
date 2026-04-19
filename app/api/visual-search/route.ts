@@ -39,16 +39,21 @@ export async function POST(req: Request) {
     // 3. Extract keywords (Gemini usually returns a comma-separated list or short sentence)
     const keywords = description.split(/[,\s]+/).filter(k => k.length > 2).slice(0, 5);
 
-    // 4. Zero-Trust Postgres Query
+    // 4. Zero-Trust Postgres Query with error handling
     // We search the 'tags' or 'description' columns for the AI-extracted keywords
     let matches = [];
     if (keywords.length > 0) {
-      matches = await db.select()
-          .from(productsTable)
-          .where(
-              or(...keywords.map(kw => ilike(productsTable.description, `%${kw}%`)))
-          )
-          .limit(8);
+      try {
+        matches = await db.select()
+            .from(productsTable)
+            .where(
+                or(...keywords.map(kw => ilike(productsTable.description, `%${kw}%`)))
+            )
+            .limit(8);
+      } catch (dbErr) {
+        console.error("Database query failed for visual search:", dbErr);
+        matches = [];
+      }
     }
 
     return NextResponse.json({

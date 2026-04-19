@@ -6,8 +6,18 @@ import Link from "next/link";
 
 export const dynamic = "force-dynamic";
 
+async function getAllProducts(): Promise<any[]> {
+  try {
+    const allProducts = await db.select().from(products);
+    return allProducts;
+  } catch (err: any) {
+    console.log("Database connection failed or products table missing.", err.message);
+    return [];
+  }
+}
+
 export default async function Products() {
-  const allProducts = await db.select().from(products);
+  const allProducts = await getAllProducts();
   
   // Remove duplicates based on product ID and convert price to number
   const uniqueProducts = Array.from(new Map(allProducts.map(p => [p.id, p])).values()).map(p => ({
@@ -41,8 +51,16 @@ export default async function Products() {
         {uniqueProducts.length === 0 ? (
           <div className="text-center py-24 bg-white/5 border border-dashed border-white/10 rounded-2xl">
             <i className="fa fa-box-open text-5xl text-gray-600 mb-4 block"></i>
-            <h3 className="text-2xl text-gray-400 mb-2">Inventory is empty</h3>
-            <p className="text-gray-500">Visit <Link href="/api/seed" className="text-blue-400 underline">/api/seed</Link> to populate 200 items.</p>
+            <h3 className="text-2xl text-gray-400 mb-2">No Products Available</h3>
+            <p className="text-gray-500 mb-6">Either inventory is empty or database is not connected.</p>
+            <div className="flex gap-4 justify-center flex-wrap">
+              <Link href="/api/seed" className="inline-block px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-xl transition">
+                Seed Sample Products
+              </Link>
+              <button onClick={() => location.reload()} className="inline-block px-6 py-3 bg-white/10 hover:bg-white/20 text-white font-semibold rounded-xl transition border border-white/20">
+                Retry Connection
+              </button>
+            </div>
           </div>
         ) : (
           <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 lg:gap-8">

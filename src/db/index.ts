@@ -12,6 +12,13 @@ const globalForDb = globalThis as unknown as {
   pool: Pool | undefined;
 };
 
+if (!process.env.POSTGRES_URL && !process.env.POSTGRES_URL_NON_POOLING) {
+  console.error(
+    "❌ Database Error: POSTGRES_URL environment variable is not set. " +
+    "Pleaseadd it to your .env.local file"
+  );
+}
+
 const pool = globalForDb.pool ?? new Pool({
   host: rawUrl.hostname,
   user: decodeURIComponent(rawUrl.username),
@@ -20,6 +27,13 @@ const pool = globalForDb.pool ?? new Pool({
   port: Number(rawUrl.port) || 5432,
   ssl: { rejectUnauthorized: false },
   max: 1,
+  connectionTimeoutMillis: 10000,
+  query_timeout: 15000,
+});
+
+// Add error handler to pool
+pool.on("error", (err) => {
+  console.error("Unexpected error on idle client", err);
 });
 
 if (process.env.NODE_ENV === "production") globalForDb.pool = pool;

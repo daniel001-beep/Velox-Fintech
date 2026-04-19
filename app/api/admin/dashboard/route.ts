@@ -29,27 +29,39 @@ export async function GET() {
       );
     }
 
-    // Fetch all users
-    const allUsers = await db.select().from(users);
+    // Fetch all users with error handling
+    let allUsers = [];
+    try {
+      allUsers = await db.select().from(users);
+    } catch (usersErr) {
+      console.error("Error fetching users:", usersErr);
+      allUsers = [];
+    }
 
-    // Fetch all orders with product and user details
-    const allOrders = await db
-      .select({
-        id: orders.id,
-        userId: orders.userId,
-        productId: orders.productId,
-        productName: products.name,
-        productPrice: products.price,
-        quantity: orders.quantity,
-        totalPrice: orders.totalPrice,
-        status: orders.status,
-        createdAt: orders.createdAt,
-        userName: users.name,
-        userEmail: users.email,
-      })
-      .from(orders)
-      .innerJoin(users, eq(orders.userId, users.id))
-      .innerJoin(products, eq(orders.productId, products.id));
+    // Fetch all orders with product and user details with error handling
+    let allOrders = [];
+    try {
+      allOrders = await db
+        .select({
+          id: orders.id,
+          userId: orders.userId,
+          productId: orders.productId,
+          productName: products.name,
+          productPrice: products.price,
+          quantity: orders.quantity,
+          totalPrice: orders.totalPrice,
+          status: orders.status,
+          createdAt: orders.createdAt,
+          userName: users.name,
+          userEmail: users.email,
+        })
+        .from(orders)
+        .innerJoin(users, eq(orders.userId, users.id))
+        .innerJoin(products, eq(orders.productId, products.id));
+    } catch (ordersErr) {
+      console.error("Error fetching orders:", ordersErr);
+      allOrders = [];
+    }
 
     return NextResponse.json({
       users: allUsers,

@@ -23,7 +23,15 @@ export default async function ProductPage({ params }: { params: Promise<{ id: st
     if (!product) notFound();
 
     const priceNum = typeof product.price === 'string' ? Number(product.price) : product.price;
-    const productReviews = await db.select().from(reviews).where(eq(reviews.productId, productId)).limit(5);
+    
+    // Safely fetch reviews with error handling
+    let productReviews: any[] = [];
+    try {
+      productReviews = await db.select().from(reviews).where(eq(reviews.productId, productId)).limit(5);
+    } catch (reviewErr) {
+      console.log("Could not fetch reviews:", reviewErr);
+      productReviews = [];
+    }
 
   return (
     <div className="min-h-screen bg-[#050505]">

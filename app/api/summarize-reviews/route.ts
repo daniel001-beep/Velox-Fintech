@@ -14,7 +14,13 @@ export async function POST(req: Request) {
       return new Response("Product ID required", { status: 400 });
     }
 
-    const reviews = await db.select().from(reviewsTable).where(eq(reviewsTable.productId, productId));
+    let reviews = [];
+    try {
+      reviews = await db.select().from(reviewsTable).where(eq(reviewsTable.productId, productId));
+    } catch (dbErr) {
+      console.error("Database error fetching reviews:", dbErr);
+      return new Response("Could not fetch reviews from database", { status: 503 });
+    }
 
     if (reviews.length === 0) {
       return new Response("No reviews found to summarize.", { status: 200 });

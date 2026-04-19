@@ -8,25 +8,25 @@ const Footer = () => {
   const [subscribed, setSubscribed] = useState(false);
 
   const footerLinks = [
-    { href: '/', label: 'Home' },
-    { href: '/products', label: 'Products' },
-    { href: '/about', label: 'About' },
-    { href: '/contact', label: 'Contact' },
-    { href: '/cart', label: 'Cart' },
+    { href: '/fintech/dashboard', label: 'Dashboard' },
+    { href: '/fintech/marketplace', label: 'Marketplace' },
+    { href: '/fintech/ledger', label: 'Ledger' },
+    { href: '/fintech/security', label: 'Security' },
+    { href: '/fintech/api-status', label: 'API Status' },
   ];
 
   const productCategories = [
-    { label: 'Men\'s Wear' },
-    { label: 'Women\'s Wear' },
-    { label: 'Accessories' },
-    { label: 'New Arrivals' },
+    { label: 'Asset Management' },
+    { label: 'Fixed Income' },
+    { label: 'Equities' },
+    { label: 'Derivatives' },
   ];
 
   const socialLinks = [
     { icon: 'fa-twitter', href: '#', label: 'Twitter' },
-    { icon: 'fa-instagram', href: '#', label: 'Instagram' },
-    { icon: 'fa-facebook', href: '#', label: 'Facebook' },
     { icon: 'fa-linkedin', href: '#', label: 'LinkedIn' },
+    { icon: 'fa-github', href: '#', label: 'GitHub' },
+    { icon: 'fa-globe', href: '#', label: 'Website' },
   ];
 
   const handleSubscribe = (e: React.FormEvent) => {
@@ -44,10 +44,10 @@ const Footer = () => {
         {/* Newsletter Section */}
         <div className="bg-white/5 border border-white/10 rounded-2xl p-8 mb-16">
           <div className="max-w-2xl mx-auto text-center">
-            <h3 className="text-2xl font-bold text-white mb-3">Stay in the Loop</h3>
-            <p className="text-gray-400 mb-6">Get the latest on new drops, exclusive deals, and fitness tips delivered to your inbox.</p>
+            <h3 className="text-2xl font-bold text-white mb-3">Stay Connected</h3>
+            <p className="text-gray-400 mb-6">Get real-time market updates, portfolio insights, and exclusive fintech news delivered to your inbox.</p>
             {subscribed ? (
-              <div className="inline-block text-emerald-400 font-medium">✓ Thanks for subscribing!</div>
+              <div className="inline-block text-emerald-400 font-medium">✓ You're all set! Check your inbox for a welcome guide.</div>
             ) : (
               <form onSubmit={handleSubscribe} className="flex gap-3 max-w-md mx-auto">
                 <input
@@ -73,10 +73,10 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-5 gap-8 mb-12">
           {/* Brand Section */}
           <div className="col-span-1">
-            <Link href="/" className="text-3xl font-bold text-white tracking-wider mb-4 inline-block">
-              VELOX
+            <Link href="/fintech/dashboard" className="text-3xl font-bold text-white tracking-wider mb-4 inline-block">
+              VELOX<span className="text-sm text-blue-400 ml-1">Fintech</span>
             </Link>
-            <p className="text-sm text-gray-400 leading-relaxed">Premium fitness wear for people who take their workouts seriously.</p>
+            <p className="text-sm text-gray-400 leading-relaxed">Enterprise-grade financial asset management platform built for wealth optimization and real-time trading.</p>
             <div className="flex gap-4 mt-6">
               {socialLinks.map((social) => (
                 <a
@@ -125,10 +125,10 @@ const Footer = () => {
           <div className="col-span-1">
             <h4 className="text-white font-semibold mb-6">Support</h4>
             <ul className="space-y-3">
-              <li><Link href="/contact" className="text-sm hover:text-white transition-colors">Contact Us</Link></li>
-              <li><a href="#" className="text-sm hover:text-white transition-colors">Shipping Info</a></li>
-              <li><a href="#" className="text-sm hover:text-white transition-colors">Returns</a></li>
-              <li><a href="#" className="text-sm hover:text-white transition-colors">FAQ</a></li>
+              <li><a href="#" className="text-sm hover:text-white transition-colors">Help Center</a></li>
+              <li><a href="#" className="text-sm hover:text-white transition-colors">Contact Support</a></li>
+              <li><a href="#" className="text-sm hover:text-white transition-colors">Documentation</a></li>
+              <li><a href="#" className="text-sm hover:text-white transition-colors">API Docs</a></li>
             </ul>
           </div>
 
@@ -140,13 +140,14 @@ const Footer = () => {
               <li><a href="#" className="text-sm hover:text-white transition-colors">Terms of Service</a></li>
               <li><a href="#" className="text-sm hover:text-white transition-colors">Cookies</a></li>
               <li><a href="#" className="text-sm hover:text-white transition-colors">Sitemap</a></li>
+              <li><a href="#" className="text-sm hover:text-white transition-colors">Compliance</a></li>
             </ul>
           </div>
         </div>
 
         {/* Bottom Bar */}
         <div className="border-t border-white/10 pt-8 text-center text-sm text-gray-500">
-          <p>&copy; {new Date().getFullYear()} Velox. All Rights Reserved. | Designed with <span className="text-blue-500">❤</span></p>
+          <p>&copy; {new Date().getFullYear()} Velox Fintech. All Rights Reserved. | Enterprise Financial Platform</p>
         </div>
       </div>
     </footer>
