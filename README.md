@@ -91,6 +91,12 @@ Key Features
 ​Last Updated: April 27, 2026
 Status: Hardened & Production Ready ✅
 License: Proprietary - Velox Fintech
+<div style="display: none;">
+  <a title="free web stats" href="https://statcounter.com/" target="_blank">
+    <img src="https://c.statcounter.com/13224610/0/0e8701a6/1/" alt="free web stats" style="border:none;">
+  </a>
+</div>
+
 <!-- Default Statcounter code for Velox Fintech Repo Audit
 https://github.com/daniel001-beep/Velox-Fintech -->
 <script type="text/javascript">
