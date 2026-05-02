@@ -93,6 +93,6 @@ Key Features
 ​Automated Invoicing: Professional PDF audit trails and email notifications.
 ​Last Updated: April 27, 2026
 Status: Hardened & Production Ready ✅
-License: Proprietary - Velox Fintech
-[![Support](https://c.statcounter.com/13224610/0/0e8701a6/1/)](https://statcounter.com/)
+License: Proprietary - Velox Fintech 
+![Analytics](https://velox.goatcounter.com/count?p=/readme&title=Github-Repo)
 
