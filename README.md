@@ -53,6 +53,7 @@ Engineered by Idowu Daniel — Mid-Level Frontend Systems Architect with a speci
 ​🔐 Security & Performance Measures
 
 ​1. Compliance-First Engineering
+
 ​✅ RLS Isolation: Database-level protection against unauthorized data access.
 
 ​✅ Static Analysis: Automated CodeQL and Dependabot scans to mitigate vulnerabilities.
@@ -68,6 +69,7 @@ Engineered by Idowu Daniel — Mid-Level Frontend Systems Architect with a speci
 ​🚀 Current Implementation Status
 
 ​Completed ✅
+
 ​Full Authentication (NextAuth.js + Google OAuth).
 
 ​High-Fidelity Dashboard with live portfolio analytics.
