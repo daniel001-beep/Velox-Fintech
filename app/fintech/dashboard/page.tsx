@@ -4,7 +4,7 @@ import React from 'react';
 import { TrendingUp, TrendingDown, Activity, Info } from 'lucide-react';
 import DashboardLayout from '@/app/components/DashboardLayout';
 import AssetAllocation from '@/app/components/AssetAllocation';
-
+// TODO: Implement optimistic UI updates for real-time ledger reconciliation to reduce perceived latency.
 export default function DashboardPage() {
   // Portfolio stat cards
   const statCards = [
