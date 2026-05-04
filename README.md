@@ -10,8 +10,9 @@ Engineered by Idowu Daniel — Mid-Level Frontend Systems Architect with a speci
 
 ​Social Proof: This architecture has been cloned and audited by 780+ developers on GitHub, making it a community-trusted standard for atomic ledger logic in the modern tech stack.
 
-Current Focus
-Current Focus: Optimizing state synchronization between Supabase and the frontend for sub-50ms ledger updates.
+Current Focus:
+
+Optimizing state synchronization between Supabase and the frontend for sub-50ms ledger updates.
 
 ​📋 Project Overview
 
