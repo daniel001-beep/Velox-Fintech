@@ -18,35 +18,33 @@ const VeloxLogoIcon: React.FC<{ size?: number; variant?: 'full' | 'icon' | 'ligh
       xmlns="http://www.w3.org/2000/svg"
       className="transition-all duration-300"
       style={{
-        filter: 'drop-shadow(0 0 8px rgba(59,130,246,0.3))',
+        filter: isDark ? 'drop-shadow(0 0 8px rgba(59,130,246,0.4))' : 'drop-shadow(0 2px 4px rgba(0,0,0,0.1))',
       }}
     >
       <defs>
-        <linearGradient id="veloxGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+        <linearGradient id="veloxPrimary" x1="0%" y1="0%" x2="100%" y2="100%">
           <stop offset="0%" stopColor="#3b82f6" />
-          <stop offset="100%" stopColor="#06b6d4" />
+          <stop offset="100%" stopColor="#1d4ed8" />
+        </linearGradient>
+        <linearGradient id="veloxSecondary" x1="0%" y1="0%" x2="0%" y2="100%">
+          <stop offset="0%" stopColor="#60a5fa" />
+          <stop offset="100%" stopColor="#3b82f6" />
+        </linearGradient>
+        <linearGradient id="veloxAccent" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stopColor="#22c55e" />
+          <stop offset="100%" stopColor="#16a34a" />
         </linearGradient>
       </defs>
       
-      {/* Rounded square background */}
-      <rect x="2" y="2" width="32" height="32" rx="8" fill="url(#veloxGradient)" />
+      {/* Abstract Geometric V Shape */}
+      {/* Left Pillar */}
+      <polygon points="4,6 12,6 20,30 12,30" fill="url(#veloxPrimary)" />
       
-      {/* VF Text - Bold, italic, geometric */}
-      <text
-        x="18"
-        y="24"
-        fontFamily="Inter, sans-serif"
-        fontSize="18"
-        fontWeight="700"
-        fill="white"
-        textAnchor="middle"
-        style={{
-          fontStyle: 'italic',
-          letterSpacing: '-1px',
-        }}
-      >
-        VF
-      </text>
+      {/* Right Pillar (Shortened) */}
+      <polygon points="24,6 32,6 28,18 20,18" fill="url(#veloxSecondary)" />
+      
+      {/* Growth/Data Block */}
+      <rect x="22" y="22" width="8" height="8" rx="1.5" fill="url(#veloxAccent)" />
     </svg>
   );
 };

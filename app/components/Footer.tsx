@@ -1,6 +1,7 @@
 "use client";
 
 import Link from 'next/link';
+import VeloxLogo from './VeloxLogo';
 
 const Footer = () => {
   const footerLinks = [
@@ -26,15 +27,15 @@ const Footer = () => {
 
   return (
     <footer className="bg-slate-950 border-t border-slate-700 text-slate-400 py-12">
-      <div className="container mx-auto px-6">
+      <div className="container mx-auto px-6 md:px-12 lg:px-24 max-w-6xl">
         {/* Main Footer Content */}
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
           {/* About Velox */}
           <div className="col-span-1">
-            <Link href="/fintech/dashboard" className="text-lg font-bold text-slate-100 tracking-wide inline-block mb-3">
-              VELOX<span className="text-xs text-blue-400 ml-1">FINTECH</span>
+            <Link href="/fintech/dashboard" className="inline-block mb-4 no-underline">
+              <VeloxLogo size={28} variant="full" />
             </Link>
-            <p className="text-xs text-slate-500 leading-relaxed">Enterprise-grade financial platform with real-time portfolio management and AI-powered insights.</p>
+            <p className="text-xs text-slate-500 leading-relaxed font-medium">Enterprise-grade financial platform with real-time portfolio management and AI-powered insights.</p>
           </div>
 
           {/* Quick Links */}

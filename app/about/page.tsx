@@ -26,7 +26,7 @@ export default function About() {
           <img
             src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80"
             alt="Fitness Team"
-            className="w-full rounded-2xl shadow-2xl object-cover h-[400px] hover:scale-[1.02] transition-transform duration-500"
+            className="w-full rounded-2xl shadow-2xl object-cover h-100 hover:scale-[1.02] transition-transform duration-500"
           />
         </div>
       </section>
@@ -34,7 +34,7 @@ export default function About() {
       {/* Values Section */}
       <section className="text-center space-y-12">
         <h2 className="text-3xl font-bold text-white relative inline-block">
-          What We're About
+          What We&apos;re About
           <div className="absolute -bottom-4 left-1/2 -translate-x-1/2 w-24 h-1 bg-blue-600 rounded-full"></div>
         </h2>
         
@@ -45,7 +45,7 @@ export default function About() {
             </div>
             <h3 className="text-xl font-bold text-white mb-4">Comfy Clothes</h3>
             <p className="text-gray-400">
-              We make gear that feels as good as it looks. No scratchy fabrics or weird fits - just clothes you'll actually want to wear.
+              We make gear that feels as good as it looks. No scratchy fabrics or weird fits - just clothes you&apos;ll actually want to wear.
             </p>
           </div>
           <div className="bg-white/5 p-8 rounded-2xl border border-white/10 hover:-translate-y-2 transition-transform duration-300">
@@ -54,7 +54,7 @@ export default function About() {
             </div>
             <h3 className="text-xl font-bold text-white mb-4">Fair Prices</h3>
             <p className="text-gray-400">
-              Premium quality doesn't have to be expensive. We keep our prices competitive because we believe everyone deserves access to the best.
+              Premium quality doesn&apos;t have to be expensive. We keep our prices competitive because we believe everyone deserves access to the best.
             </p>
           </div>
           <div className="bg-white/5 p-8 rounded-2xl border border-white/10 hover:-translate-y-2 transition-transform duration-300">
@@ -63,7 +63,7 @@ export default function About() {
             </div>
             <h3 className="text-xl font-bold text-white mb-4">Real Community</h3>
             <p className="text-gray-400">
-              We're building a space where fitness lovers can connect, share tips, and support each other's journeys.
+              We&apos;re building a space where fitness lovers can connect, share tips, and support each other&apos;s journeys.
             </p>
           </div>
         </div>
@@ -75,13 +75,13 @@ export default function About() {
           <img
             src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80"
             alt="Premium Tech"
-            className="w-full rounded-2xl shadow-2xl object-cover h-[400px] hover:scale-[1.02] transition-transform duration-500"
+            className="w-full rounded-2xl shadow-2xl object-cover h-100 hover:scale-[1.02] transition-transform duration-500"
           />
         </div>
         <div className="md:w-1/2 space-y-6">
           <h2 className="text-3xl font-bold text-white">Our Gear Speaks for Itself</h2>
           <p className="text-lg text-gray-300">
-            We test every product ourselves - because if we wouldn't wear it during our own workouts, why would we expect you to? From intense gym sessions to casual weekend wear, our clothes are designed to perform when you need them to.
+            We test every product ourselves - because if we wouldn&apos;t wear it during our own workouts, why would we expect you to? From intense gym sessions to casual weekend wear, our clothes are designed to perform when you need them to.
           </p>
           <div className="pt-4">
             <Link href="/contact" className="btn-secondary inline-flex items-center gap-2 px-8 py-4 bg-white/10 border border-white/20 rounded-xl font-bold hover:bg-white/20 transition">

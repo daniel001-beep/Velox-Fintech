@@ -19,9 +19,9 @@ const AssetAllocation: React.FC = () => {
   ];
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-3">
       {/* Horizontal Bar Chart */}
-      <div className="flex h-10 gap-1 rounded-lg overflow-hidden shadow-md">
+      <div className="flex h-10 gap-1 rounded-sm overflow-hidden shadow-md">
         {assets.map((asset) => (
           <div
             key={asset.name}
@@ -38,16 +38,16 @@ const AssetAllocation: React.FC = () => {
       {/* Legend with details */}
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
         {assets.map((asset) => (
-          <div key={asset.name} className="p-3 bg-slate-800 rounded-lg border border-slate-700">
-            <div className="flex items-center gap-2 mb-2">
+          <div key={asset.name} className="p-4 bg-slate-800 rounded-sm border border-slate-700 flex flex-col items-center text-center">
+            <div className="flex items-center gap-2 mb-3">
               <div
-                className="w-3 h-3 rounded-full"
+                className="w-3 h-3 rounded-sm"
                 style={{ backgroundColor: asset.color }}
               ></div>
-              <span className="text-xs font-medium text-slate-300">{asset.name}</span>
+              <span className="text-xs font-bold text-slate-300 uppercase tracking-wide">{asset.name}</span>
             </div>
-            <p className="text-lg font-bold text-slate-100">{asset.percentage}%</p>
-            <p className="text-xs text-slate-500">${asset.value.toLocaleString()}</p>
+            <p className="text-2xl font-bold text-slate-100 mb-1">{asset.percentage}%</p>
+            <p className="text-sm font-medium text-slate-500">${asset.value.toLocaleString()}</p>
           </div>
         ))}
       </div>

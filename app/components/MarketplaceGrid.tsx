@@ -14,7 +14,7 @@ interface Product {
   accentColor: string;
 }
 
-const products: Product[] = [
+export const products: Product[] = [
   {
     id: 'fraud-detection',
     title: 'AI Fraud Detection',
@@ -160,7 +160,7 @@ export default function MarketplaceGrid({ onSelectProduct }: MarketplaceGridProp
           return (
             <div
               key={product.id}
-              className="bg-slate-800 border border-slate-700 rounded-xl p-6 hover:border-slate-600 hover:shadow-lg transition-all duration-300 flex flex-col"
+              className="bg-slate-900 border border-slate-700 rounded-sm p-8 hover:bg-slate-800 transition-all duration-300 flex flex-col"
             >
               {/* Icon & Title */}
               <div className="flex items-start justify-between gap-4 mb-4">
@@ -172,7 +172,7 @@ export default function MarketplaceGrid({ onSelectProduct }: MarketplaceGridProp
                     {product.category}
                   </p>
                 </div>
-                <div className="w-10 h-10 rounded-lg flex items-center justify-center shrink-0" style={{ backgroundColor: `${product.accentColor}20` }}>
+                <div className="w-10 h-10 rounded-sm flex items-center justify-center shrink-0 bg-slate-700 border border-slate-600">
                   <Icon className="w-5 h-5" style={{ color: product.accentColor }} />
                 </div>
               </div>
@@ -200,9 +200,9 @@ export default function MarketplaceGrid({ onSelectProduct }: MarketplaceGridProp
                   {product.compliance.map((badge) => (
                     <span
                       key={badge}
-                      className="text-xs font-semibold px-2.5 py-1 rounded bg-blue-900/20 border border-blue-700 text-blue-400"
+                      className="text-[10px] font-bold px-2 py-0.5 rounded-sm bg-slate-700 border border-slate-600 text-slate-300 uppercase tracking-tighter"
                     >
-                      {badge.toUpperCase()} Type II
+                      {badge} certified
                     </span>
                   ))}
                 </div>
@@ -216,7 +216,7 @@ export default function MarketplaceGrid({ onSelectProduct }: MarketplaceGridProp
 
                 <button
                   onClick={() => onSelectProduct?.(product.id)}
-                  className="w-full py-2.5 px-4 bg-blue-600 hover:bg-blue-700 text-white text-sm font-semibold rounded-lg transition-all duration-200"
+                  className="w-full py-2.5 px-4 bg-blue-600 hover:bg-blue-700 text-white text-sm font-semibold rounded-sm transition-all duration-200"
                   aria-label={`Select ${product.title}`}
                 >
                   Select Service

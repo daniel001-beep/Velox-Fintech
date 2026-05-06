@@ -16,35 +16,39 @@ export default function SecurityPage() {
 
   return (
     <DashboardLayout>
-      <div className="pt-4">
-        <div className="mb-8">
-          <div className="flex items-center gap-3 mb-4">
+      <div className="mb-8 border-b border-slate-800 pb-8">
+        <div className="flex items-center gap-4 mb-4">
+          <div className="p-3 bg-blue-500/10 rounded-sm border border-blue-500/20">
             <Shield className="w-8 h-8 text-blue-500" />
-            <h1 className="text-4xl font-bold text-slate-100">Security Audit</h1>
           </div>
-          <p className="text-slate-400">Enterprise security certifications and compliance status</p>
-          <p className="text-xs text-slate-500 mt-2">Last verified: 2026-04-26</p>
+          <div>
+            <h1 className="text-4xl font-bold text-slate-100">Security Audit</h1>
+            <p className="text-slate-400 mt-1">Enterprise security certifications and compliance status</p>
+          </div>
         </div>
-        
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {securityItems.map((item) => {
-            const Icon = item.icon;
-            
-            return (
-              <div key={item.label} className="bg-slate-800 border border-slate-700 rounded-xl p-6 hover:border-slate-600 transition-all duration-200">
-                <div className="flex items-start gap-4">
-                  <Icon className="w-6 h-6 text-green-400 shrink-0 mt-1" />
-                  <div>
-                    <h3 className="text-lg font-bold text-slate-100 mb-1">{item.label}</h3>
-                    <p className="text-sm text-slate-400">
-                      Status: <span className="text-green-400 font-medium">{item.status}</span>
-                    </p>
+      </div>
+      
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {securityItems.map((item) => {
+          const Icon = item.icon;
+          
+          return (
+            <div key={item.label} className="bg-slate-900 border border-slate-700 rounded-sm p-6 hover:bg-slate-800 transition-all duration-200">
+              <div className="flex items-start gap-4">
+                <div className="p-2 bg-slate-800 rounded-sm border border-slate-700">
+                  <Icon className="w-5 h-5 text-emerald-400 shrink-0" />
+                </div>
+                <div>
+                  <h3 className="text-lg font-bold text-slate-100 mb-1">{item.label}</h3>
+                  <div className="flex items-center gap-2">
+                    <div className="w-1.5 h-1.5 bg-emerald-500 rounded-sm"></div>
+                    <p className="text-xs font-bold text-emerald-500 uppercase tracking-widest">{item.status}</p>
                   </div>
                 </div>
               </div>
-            );
-          })}
-        </div>
+            </div>
+          );
+        })}
       </div>
     </DashboardLayout>
   );

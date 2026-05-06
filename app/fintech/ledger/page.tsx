@@ -15,48 +15,53 @@ export default function LedgerPage() {
 
   return (
     <DashboardLayout>
-      <div className="pt-4">
-        <div className="mb-8">
-          <div className="flex items-center gap-3 mb-4">
+      <div className="mb-8 border-b border-slate-800 pb-8">
+        <div className="flex items-center gap-4 mb-4">
+          <div className="p-3 bg-blue-500/10 rounded-sm border border-blue-500/20">
             <BookOpen className="w-8 h-8 text-blue-500" />
-            <h1 className="text-4xl font-bold text-slate-100">Ledger</h1>
           </div>
-          <p className="text-slate-400">Complete transaction history and reconciliation</p>
-          <p className="text-xs text-slate-500 mt-2">Last synced: just now</p>
+          <div>
+            <h1 className="text-4xl font-bold text-slate-100">Financial Ledger</h1>
+            <p className="text-slate-400 mt-1">Complete transaction history and reconciliation</p>
+          </div>
         </div>
-        
-        <div className="bg-slate-800 border border-slate-700 rounded-xl p-8">
-          <h2 className="text-xl font-bold text-slate-100 mb-6">Transaction History</h2>
-          <div className="overflow-x-auto">
-            <table className="w-full">
-              <thead>
-                <tr className="border-b border-slate-700">
-                  <th className="text-left py-3 px-4 text-xs font-semibold text-slate-400 uppercase tracking-wider">ID</th>
-                  <th className="text-left py-3 px-4 text-xs font-semibold text-slate-400 uppercase tracking-wider">Type</th>
-                  <th className="text-left py-3 px-4 text-xs font-semibold text-slate-400 uppercase tracking-wider">Description</th>
-                  <th className="text-left py-3 px-4 text-xs font-semibold text-slate-400 uppercase tracking-wider">Date</th>
-                  <th className="text-right py-3 px-4 text-xs font-semibold text-slate-400 uppercase tracking-wider">Amount</th>
-                  <th className="text-left py-3 px-4 text-xs font-semibold text-slate-400 uppercase tracking-wider">Status</th>
+      </div>
+      
+      <div className="bg-slate-900 border border-slate-700 rounded-sm overflow-hidden">
+        <div className="p-6 border-b border-slate-800">
+          <h2 className="text-xl font-bold text-slate-100">Transaction History</h2>
+        </div>
+        <div className="overflow-x-auto">
+          <table className="w-full">
+            <thead>
+              <tr className="bg-slate-800/50">
+                <th className="text-left py-4 px-6 text-xs font-bold text-slate-400 uppercase tracking-widest">ID</th>
+                <th className="text-left py-4 px-6 text-xs font-bold text-slate-400 uppercase tracking-widest">Type</th>
+                <th className="text-left py-4 px-6 text-xs font-bold text-slate-400 uppercase tracking-widest">Description</th>
+                <th className="text-left py-4 px-6 text-xs font-bold text-slate-400 uppercase tracking-widest">Date</th>
+                <th className="text-right py-4 px-6 text-xs font-bold text-slate-400 uppercase tracking-widest">Amount</th>
+                <th className="text-right py-4 px-6 text-xs font-bold text-slate-400 uppercase tracking-widest">Status</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-800">
+              {transactionHistory.map((tx) => (
+                <tr key={tx.id} className="hover:bg-slate-800/30 transition-colors">
+                  <td className="py-5 px-6 font-mono text-slate-500 text-xs uppercase">{tx.id}</td>
+                  <td className="py-5 px-6">
+                    <span className="text-slate-200 font-bold text-xs tracking-wider">{tx.type}</span>
+                  </td>
+                  <td className="py-5 px-6 text-slate-400 text-sm font-medium">{tx.description}</td>
+                  <td className="py-5 px-6 text-slate-400 text-sm">{tx.date}</td>
+                  <td className="py-5 px-6 text-right font-mono font-bold text-slate-100">{tx.amount}</td>
+                  <td className="py-5 px-6 text-right">
+                    <span className="inline-flex items-center px-2.5 py-0.5 rounded-sm text-xs font-bold bg-emerald-500/10 text-emerald-500 border border-emerald-500/20">
+                      {tx.status.toUpperCase()}
+                    </span>
+                  </td>
                 </tr>
-              </thead>
-              <tbody>
-                {transactionHistory.map((tx, idx) => (
-                  <tr key={tx.id} className={`border-b border-slate-700 ${idx % 2 === 0 ? 'bg-slate-900/30' : ''}`}>
-                    <td className="py-4 px-4 font-mono text-slate-300 text-sm">{tx.id}</td>
-                    <td className="py-4 px-4 text-slate-200 font-medium text-sm">{tx.type}</td>
-                    <td className="py-4 px-4 text-slate-400 text-sm">{tx.description}</td>
-                    <td className="py-4 px-4 text-slate-400 text-sm">{tx.date}</td>
-                    <td className="py-4 px-4 text-right font-mono font-semibold text-slate-100 text-sm">{tx.amount}</td>
-                    <td className="py-4 px-4">
-                      <span className="inline-block px-2 py-1 rounded text-xs font-semibold bg-green-900 text-green-400">
-                        {tx.status}
-                      </span>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
+              ))}
+            </tbody>
+          </table>
         </div>
       </div>
     </DashboardLayout>
