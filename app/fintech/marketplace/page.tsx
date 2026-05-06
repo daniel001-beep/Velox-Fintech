@@ -4,12 +4,13 @@ import React, { useState } from 'react';
 import DashboardLayout from '@/app/components/DashboardLayout';
 import MarketplaceGrid from '@/app/components/MarketplaceGrid';
 
+import { useRouter } from 'next/navigation';
+
 export default function MarketplacePage() {
-  const [selectedProduct, setSelectedProduct] = useState<string | null>(null);
+  const router = useRouter();
 
   const handleSelectProduct = (productId: string) => {
-    setSelectedProduct(productId);
-    console.log(`Selected product: ${productId}`);
+    router.push(`/fintech/marketplace/${productId}`);
   };
 
   return (

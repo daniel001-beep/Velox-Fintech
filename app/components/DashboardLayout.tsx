@@ -6,8 +6,10 @@ interface DashboardLayoutProps {
 
 export default function DashboardLayout({ children }: DashboardLayoutProps) {
   return (
-    <main className="w-full mx-auto px-4 md:px-8 py-8 max-w-7xl">
-      {children}
-    </main>
+    <section className="container mx-auto px-6 md:px-12 lg:px-24 pt-4 pb-10 max-w-6xl">
+      <div className="space-y-10">
+        {children}
+      </div>
+    </section>
   );
 }

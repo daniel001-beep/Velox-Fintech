@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import { Providers } from "@/app/components/Providers";
 import "./fintech.css";
 
 export const metadata: Metadata = {
@@ -13,8 +12,8 @@ export default function FintechLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div>
-      <main className="pt-16">{children}</main>
+    <div className="bg-slate-950 min-h-screen">
+      <div>{children}</div>
     </div>
   );
 }
