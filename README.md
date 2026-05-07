@@ -4,7 +4,7 @@
 
 Engineered by Idowu Daniel — Mid-Level Frontend Systems Architect with a specialized background in Accounting.
 
-​780+ Clones | Next.js 15 | React 19 | Drizzle ORM | PostgreSQL
+​800+ Clones | Next.js 15 | React 19 | Drizzle ORM | PostgreSQL
 
 ​Velox Fintech is a sophisticated financial management platform designed for high-concurrency operations. Originally prototyped in Vanilla JavaScript, the system is now built with Next.js 15, React 19, Drizzle ORM, and PostgreSQL.
 
